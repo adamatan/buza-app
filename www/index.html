@@ -1,34 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js">
-</script>
-<script>
-$(document).ready(function(){
-		var request=$.ajax({
-  			type: "GET",
-  			url: "http://2.cinema-sderot.appspot.com/getSchedule",
-  			dataType: "json",
-  			crossDomain: true
-		});
-		
-		request.done(function( result ) {
-			$("div").append("<table>");
-			for (movie in result.movies) {
-				$("table").append("<tr><td>"+result.movies[movie].propertyMap.title+"</td></tr>");
-			}
-			$("div").append("</table>");
-						
-		  //$("div").append("DONE"+msg.movies+"OK");
-		});
-		 
-		request.fail(function( jqXHR, textStatus ) {
-		  $("div").append("Request failed: " + textStatus);
-		});
+<script src="http://code.jquery.com/jquery-1.6.3.js"></script>
+
+<script type='text/javascript'>
+$(window).load(function(){
+function switchImage(){
+    $('#images img:visible').fadeOut(function(){
+        $(this).next().length ? $(this).next().fadeIn() : $('#images img').eq(0).fadeIn();
+    });
+};
+$('#images img').hide().eq(0).show(); // show only the first image
+setInterval(switchImage, 2000);
+
+
 });
+
 </script>
+
 </head>
-<body>
-<div></div>
-</body>
+	<body>
+		<div id="images">    
+		    <img src="img/1.jpg" width="20%"/>
+		    <img src="img/2.jpg" width="20%"/>
+		</div>
+	</body>
 </html>
